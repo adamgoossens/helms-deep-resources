@@ -151,10 +151,10 @@ spec:
                   nodeCount: 3
                   resources:
                     limits:
-                       memory: 16Gi
+                       memory: 4Gi
                     requests:
                       cpu: 500m
-                      memory: 16Gi
+                      memory: 4Gi
                   storage:
                     storageClassName: gp2
                     size: 200G
