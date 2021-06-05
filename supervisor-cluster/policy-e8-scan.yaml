@@ -3,7 +3,6 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-e8-scan
-	namespace: common-policies
   annotations:
     policy.open-cluster-management.io/standards: NIST SP 800-53
     policy.open-cluster-management.io/categories: CM Configuration Management
@@ -80,7 +79,6 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-policy-e8-scan
-	namespace: common-policies
 placementRef:
   name: placement-policy-e8-scan
   kind: PlacementRule
@@ -94,7 +92,6 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   name: placement-policy-e8-scan
-	namespace: common-policies
 spec:
   clusterConditions:
   - status: "True"
