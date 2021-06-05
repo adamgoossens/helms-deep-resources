@@ -209,7 +209,7 @@ spec:
               outputs:
                 - name: elasticsearch-helms-deep
                   type: "elasticsearch"
-                  url: "http://elasticsearch-route-helms-deep-elk.apps.cluster-5e6d.5e6d.sandbox801.opentlc.com"
+                  url: "http://elasticsearch-route-helms-deep-elk.apps.cluster-5e6d.5e6d.sandbox801.opentlc.com:80"
               pipelines:
                 - name: audit-logs
                   inputRefs:
