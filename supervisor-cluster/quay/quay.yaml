@@ -20,5 +20,5 @@ spec:
       kind: route
     - managed: true
       kind: mirror
-    - managed: true
+    - managed: false
       kind: monitoring
