@@ -1,12 +1,4 @@
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: helms-deep-sso
-  annotations:
-    openshift.io/display-name: "HELMS DEEP Single Sign On"
-spec: {}
----
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
