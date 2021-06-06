@@ -2,17 +2,17 @@
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
-  name: helms-deep-elk-og
-  namespace: helms-deep-elk
+  name: helms-deep-eck-og
+  namespace: helms-deep-eck
 spec:
   targetNamespaces:
-    - helms-deep-elk
+    - helms-deep-eck
 ---
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
   name: elasticsearch-eck-operator-certified
-  namespace: helms-deep-elk
+  namespace: helms-deep-eck
 spec:
   name: elasticsearch-eck-operator-certified
   channel: stable
