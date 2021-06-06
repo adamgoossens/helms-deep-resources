@@ -1,0 +1,30 @@
+---
+apiVersion: keycloak.org/v1alpha1
+kind: Keycloak
+metadata:
+  name: sso
+  labels:
+    app: sso
+  namespace: helms-deep-sso
+spec:
+  externalAccess:
+    enabled: true
+  instances: 1
+---
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakRealm
+metadata:
+  name: helms-deep-realm
+  namespace: helms-deep-sso
+  labels:
+    realm: helms-deep
+    app: sso
+spec:
+  instanceSelector:
+    matchLabels:
+      app: sso
+  realm:
+    enabled: true
+    displayName: HELMS DEEP
+    realm: "helms-deep"
+    id: 'helms-deep-realm'
