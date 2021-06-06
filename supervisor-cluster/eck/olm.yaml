@@ -1,12 +1,4 @@
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: helms-deep-elk
-  annotations:
-    openshift.io/display-name: "HELMS DEEP Consolidated Logging Stack"
-spec: {}
----
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
