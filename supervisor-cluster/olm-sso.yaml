@@ -1,0 +1,30 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: helms-deep-sso
+  annotations:
+    openshift.io/display-name: "HELMS DEEP Single Sign On"
+spec: {}
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: helms-deep-sso-og
+  namespace: helms-deep-sso
+spec:
+  targetNamespaces:
+    - helms-deep-sso
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: rhsso-operator
+  namespace: helms-deep-sso
+spec:
+  name: rhsso-operator
+  channel: alpha
+  installPlanApproval: Automatic
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+

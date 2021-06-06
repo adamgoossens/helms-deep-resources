@@ -1,0 +1,30 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: helms-deep-registry-prod
+  annotations:
+    openshift.io/display-name: "HELMS DEEP Container Registry - Production"
+spec: {}
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: helms-deep-registry-prod-og
+  namespace: helms-deep-registry-prod
+spec:
+  targetNamespaces:
+    - helms-deep-registry-prod
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: quay-operator
+  namespace: helms-deep-registry-prod
+spec:
+  name: quay-operator
+  channel: quay-v3.5
+  installPlanApproval: Automatic
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+
