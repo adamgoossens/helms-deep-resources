@@ -1,0 +1,1074 @@
+---
+apiVersion: config.openshift.io/v1
+kind: APIServer
+metadata:
+  name: ocp4-e8-api-server-encryption-provider-cipher
+  namespace: openshift-compliance
+spec:
+  encryption:
+    type: aescbc
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-dac-modification-chmod
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20arch%3Db32%20-S%20chmod%20-F%20auid%3E%3D1000%20-F%20auid%21%3Dunset%20-F%20key%3Dperm_mod%0A-a%20always%2Cexit%20-F%20arch%3Db64%20-S%20chmod%20-F%20auid%3E%3D1000%20-F%20auid%21%3Dunset%20-F%20key%3Dperm_mod%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-chmod_dac_modification.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-dac-modification-chown
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20arch%3Db32%20-S%20chown%20-F%20auid%3E%3D1000%20-F%20auid%21%3Dunset%20-F%20key%3Dperm_mod%0A-a%20always%2Cexit%20-F%20arch%3Db64%20-S%20chown%20-F%20auid%3E%3D1000%20-F%20auid%21%3Dunset%20-F%20key%3Dperm_mod%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-chown_dac_modification.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-execution-chcon
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20path%3D/usr/bin/chcon%20-F%20auid%3E%3D1000%20-F%20auid%21%3Dunset%20-F%20key%3Dprivileged%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-usr_bin_chcon_execution.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-execution-restorecon
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20path%3D/usr/sbin/restorecon%20-F%20auid%3E%3D1000%20-F%20auid%21%3Dunset%20-F%20key%3Dprivileged%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-usr_sbin_restorecon_execution.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-execution-semanage
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20path%3D/usr/sbin/semanage%20-F%20auid%3E%3D1000%20-F%20auid%21%3Dunset%20-F%20key%3Dprivileged%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-usr_sbin_semanage_execution.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-execution-setfiles
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20path%3D/usr/sbin/setfiles%20-F%20auid%3E%3D1000%20-F%20auid%21%3Dunset%20-F%20key%3Dprivileged%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-usr_sbin_setfiles_execution.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-execution-setsebool
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20path%3D/usr/sbin/setsebool%20-F%20auid%3E%3D1000%20-F%20auid%21%3Dunset%20-F%20key%3Dprivileged%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-usr_sbin_setsebool_execution.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-execution-seunshare
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20path%3D/usr/sbin/seunshare%20-F%20auid%3E%3D1000%20-F%20auid%21%3Dunset%20-F%20key%3Dprivileged%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-usr_sbin_seunshare_execution.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-kernel-module-loading-delete
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20arch%3Db32%20-S%20delete_module%20-k%20module-change%0A-a%20always%2Cexit%20-F%20arch%3Db64%20-S%20delete_module%20-k%20module-change%0A
+        mode: 384
+        overwrite: true
+        path: /etc/audit/rules.d/75-kernel-module-loading-delete.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-kernel-module-loading-finit
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20arch%3Db32%20-S%20finit_module%20-k%20module-change%0A-a%20always%2Cexit%20-F%20arch%3Db64%20-S%20finit_module%20-k%20module-change%0A
+        mode: 384
+        overwrite: true
+        path: /etc/audit/rules.d/75-kernel-module-loading-finit.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-kernel-module-loading-init
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20arch%3Db32%20-S%20init_module%20-k%20module-change%0A-a%20always%2Cexit%20-F%20arch%3Db64%20-S%20init_module%20-k%20module-change%0A
+        mode: 384
+        overwrite: true
+        path: /etc/audit/rules.d/75-kernel-module-loading-init.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-login-events-faillock
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-w%20/var/run/faillock%20-p%20wa%20-k%20logins%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-faillock_login_events.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-login-events-lastlog
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-w%20/var/log/lastlog%20-p%20wa%20-k%20logins%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-lastlog_login_events.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-login-events-tallylog
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-w%20/var/log/tallylog%20-p%20wa%20-k%20logins%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-tallylog_login_events.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-networkconfig-modification
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20arch%3Db32%20-S%20sethostname%2Csetdomainname%20-F%20key%3Daudit_rules_networkconfig_modification%0A-a%20always%2Cexit%20-F%20arch%3Db64%20-S%20sethostname%2Csetdomainname%20-F%20key%3Daudit_rules_networkconfig_modification%0A-w%20/etc/issue%20-p%20wa%20-k%20audit_rules_networkconfig_modification%0A-w%20/etc/issue.net%20-p%20wa%20-k%20audit_rules_networkconfig_modification%0A-w%20/etc/hosts%20-p%20wa%20-k%20audit_rules_networkconfig_modification%0A-w%20/etc/sysconfig/network%20-p%20wa%20-k%20audit_rules_networkconfig_modification%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-audit_rules_networkconfig_modification.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-sysadmin-actions
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-w%20/etc/sudoers.d/%20-p%20wa%20-k%20actions%0A-w%20/etc/sudoers%20-p%20wa%20-k%20actions%0A
+        mode: 384
+        overwrite: true
+        path: /etc/audit/rules.d/75-audit-sysadmin-actions.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-time-adjtimex
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20arch%3Db64%20-S%20adjtimex%20-k%20audit_time_rules%0A-a%20always%2Cexit%20-F%20arch%3Db32%20-S%20adjtimex%20-k%20audit_time_rules%0A
+        mode: 384
+        overwrite: true
+        path: /etc/audit/rules.d/75-syscall-adjtimex.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-time-clock-settime
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20arch%3Db64%20-S%20clock_settime%20-F%20a0%3D0x0%20-k%20time-change%0A-a%20always%2Cexit%20-F%20arch%3Db32%20-S%20clock_settime%20-F%20a0%3D0x0%20-k%20time-change%0A
+        mode: 384
+        overwrite: true
+        path: /etc/audit/rules.d/75-syscall-clock-settime.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-time-settimeofday
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20arch%3Db64%20-S%20settimeofday%20-k%20audit_time_rules%0A-a%20always%2Cexit%20-F%20arch%3Db32%20-S%20settimeofday%20-k%20audit_time_rules%0A
+        mode: 384
+        overwrite: true
+        path: /etc/audit/rules.d/75-syscall-settimeofday.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-time-stime
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20arch%3Db64%20-S%20stime%20-k%20audit_time_rules%0A-a%20always%2Cexit%20-F%20arch%3Db32%20-S%20stime%20-k%20audit_time_rules%0A
+        mode: 384
+        overwrite: true
+        path: /etc/audit/rules.d/75-syscall-stime.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-time-watch-localtime
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-w%20/etc/localtime%20-p%20wa%20-k%20audit_time_rules%0A
+        mode: 384
+        overwrite: true
+        path: /etc/audit/rules.d/75-etclocaltime-wa-audit_time_rules.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-audit-rules-usergroup-modification
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-w%20/etc/group%20-p%20wa%20-k%20audit_rules_usergroup_modification%0A-w%20/etc/passwd%20-p%20wa%20-k%20audit_rules_usergroup_modification%0A-w%20/etc/gshadow%20-p%20wa%20-k%20audit_rules_usergroup_modification%0A-w%20/etc/shadow%20-p%20wa%20-k%20audit_rules_usergroup_modification%0A-w%20/etc/security/opasswd%20-p%20wa%20-k%20audit_rules_usergroup_modification%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-audit_rules_usergroup_modification.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-auditd-name-format
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,%23%0A%23%20This%20file%20controls%20the%20configuration%20of%20the%20audit%20daemon%0A%23%0A%0Alocal_events%20%3D%20yes%0Awrite_logs%20%3D%20yes%0Alog_file%20%3D%20/var/log/audit/audit.log%0Alog_group%20%3D%20root%0Alog_format%20%3D%20ENRICHED%0Aflush%20%3D%20incremental_async%0Afreq%20%3D%2050%0Amax_log_file%20%3D%208%0Anum_logs%20%3D%205%0Apriority_boost%20%3D%204%0Aname_format%20%3D%20hostname%0A%23%23name%20%3D%20mydomain%0Amax_log_file_action%20%3D%20rotate%0Aspace_left%20%3D%20100%0Aspace_left_action%20%3D%20syslog%0Averify_email%20%3D%20yes%0Aaction_mail_acct%20%3D%20root%0Aadmin_space_left%20%3D%2050%0Aadmin_space_left_action%20%3D%20syslog%0Adisk_full_action%20%3D%20syslog%0Adisk_error_action%20%3D%20syslog%0Ause_libwrap%20%3D%20yes%0A%23%23tcp_listen_port%20%3D%2060%0Atcp_listen_queue%20%3D%205%0Atcp_max_per_addr%20%3D%201%0A%23%23tcp_client_ports%20%3D%201024-65535%0Atcp_client_max_idle%20%3D%200%0Atransport%20%3D%20TCP%0Akrb5_principal%20%3D%20auditd%0A%23%23krb5_key_file%20%3D%20/etc/audit/audit.key%0Adistribute_network%20%3D%20no%0Aq_depth%20%3D%20400%0Aoverflow_action%20%3D%20syslog%0Amax_restarts%20%3D%2010%0Aplugin_dir%20%3D%20/etc/audit/plugins.d
+        mode: 416
+        overwrite: true
+        path: /etc/audit/auditd.conf
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-no-empty-passwords
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,%23%20Generated%20by%20authselect%20on%20Sat%20Oct%2027%2014%3A59%3A36%202018%0A%23%20Do%20not%20modify%20this%20file%20manually.%0A%0Aauth%20%20%20%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_env.so%0Aauth%20%20%20%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_faildelay.so%20delay%3D2000000%0Aauth%20%20%20%20%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_fprintd.so%0Aauth%20%20%20%20%20%20%20%20%5Bdefault%3D1%20ignore%3Dignore%20success%3Dok%5D%20%20%20%20%20%20%20%20%20pam_succeed_if.so%20uid%20%3E%3D%201000%20quiet%0Aauth%20%20%20%20%20%20%20%20%5Bdefault%3D1%20ignore%3Dignore%20success%3Dok%5D%20%20%20%20%20%20%20%20%20pam_localuser.so%0Aauth%20%20%20%20%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_unix.so%20try_first_pass%0Aauth%20%20%20%20%20%20%20%20requisite%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_succeed_if.so%20uid%20%3E%3D%201000%20quiet_success%0Aauth%20%20%20%20%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_sss.so%20forward_pass%0Aauth%20%20%20%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_deny.so%0A%0Aaccount%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_unix.so%0Aaccount%20%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_localuser.so%0Aaccount%20%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_succeed_if.so%20uid%20%3C%201000%20quiet%0Aaccount%20%20%20%20%20%5Bdefault%3Dbad%20success%3Dok%20user_unknown%3Dignore%5D%20pam_sss.so%0Aaccount%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_permit.so%0A%0Apassword%20%20%20%20requisite%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_pwquality.so%20try_first_pass%20local_users_only%0Apassword%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_unix.so%20sha512%20shadow%20try_first_pass%20use_authtok%0Apassword%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_sss.so%20use_authtok%0Apassword%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_deny.so%0A%0Asession%20%20%20%20%20optional%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_keyinit.so%20revoke%0Asession%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_limits.so%0A-session%20%20%20%20optional%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_systemd.so%0Asession%20%20%20%20%20%5Bsuccess%3D1%20default%3Dignore%5D%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_succeed_if.so%20service%20in%20crond%20quiet%20use_uid%0Asession%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_unix.so%0Asession%20%20%20%20%20optional%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_sss.so%0A
+        mode: 420
+        overwrite: true
+        path: /etc/pam.d/password-auth
+      - contents:
+          source: data:,%23%20Generated%20by%20authselect%20on%20Sat%20Oct%2027%2014%3A59%3A36%202018%0A%23%20Do%20not%20modify%20this%20file%20manually.%0A%0Aauth%20%20%20%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_env.so%0Aauth%20%20%20%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_faildelay.so%20delay%3D2000000%0Aauth%20%20%20%20%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_fprintd.so%0Aauth%20%20%20%20%20%20%20%20%5Bdefault%3D1%20ignore%3Dignore%20success%3Dok%5D%20%20%20%20%20%20%20%20%20pam_succeed_if.so%20uid%20%3E%3D%201000%20quiet%0Aauth%20%20%20%20%20%20%20%20%5Bdefault%3D1%20ignore%3Dignore%20success%3Dok%5D%20%20%20%20%20%20%20%20%20pam_localuser.so%0Aauth%20%20%20%20%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_unix.so%20try_first_pass%0Aauth%20%20%20%20%20%20%20%20requisite%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_succeed_if.so%20uid%20%3E%3D%201000%20quiet_success%0Aauth%20%20%20%20%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_sss.so%20forward_pass%0Aauth%20%20%20%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_deny.so%0A%0Aaccount%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_unix.so%0Aaccount%20%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_localuser.so%0Aaccount%20%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_succeed_if.so%20uid%20%3C%201000%20quiet%0Aaccount%20%20%20%20%20%5Bdefault%3Dbad%20success%3Dok%20user_unknown%3Dignore%5D%20pam_sss.so%0Aaccount%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_permit.so%0A%0Apassword%20%20%20%20requisite%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_pwquality.so%20try_first_pass%20local_users_only%0Apassword%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_unix.so%20sha512%20shadow%20try_first_pass%20use_authtok%0Apassword%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_sss.so%20use_authtok%0Apassword%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_deny.so%0A%0Asession%20%20%20%20%20optional%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_keyinit.so%20revoke%0Asession%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_limits.so%0A-session%20%20%20%20optional%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_systemd.so%0Asession%20%20%20%20%20%5Bsuccess%3D1%20default%3Dignore%5D%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_succeed_if.so%20service%20in%20crond%20quiet%20use_uid%0Asession%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_unix.so%0Asession%20%20%20%20%20optional%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_sss.so%0A
+        mode: 420
+        overwrite: true
+        path: /etc/pam.d/system-auth
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-sshd-disable-gssapi-auth
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,%0A%23%09%24OpenBSD%3A%20sshd_config%2Cv%201.103%202018/04/09%2020%3A41%3A22%20tj%20Exp%20%24%0A%0A%23%20This%20is%20the%20sshd%20server%20system-wide%20configuration%20file.%20%20See%0A%23%20sshd_config%285%29%20for%20more%20information.%0A%0A%23%20This%20sshd%20was%20compiled%20with%20PATH%3D/usr/local/bin%3A/usr/bin%3A/usr/local/sbin%3A/usr/sbin%0A%0A%23%20The%20strategy%20used%20for%20options%20in%20the%20default%20sshd_config%20shipped%20with%0A%23%20OpenSSH%20is%20to%20specify%20options%20with%20their%20default%20value%20where%0A%23%20possible%2C%20but%20leave%20them%20commented.%20%20Uncommented%20options%20override%20the%0A%23%20default%20value.%0A%0A%23%20If%20you%20want%20to%20change%20the%20port%20on%20a%20SELinux%20system%2C%20you%20have%20to%20tell%0A%23%20SELinux%20about%20this%20change.%0A%23%20semanage%20port%20-a%20-t%20ssh_port_t%20-p%20tcp%20%23PORTNUMBER%0A%23%0A%23Port%2022%0A%23AddressFamily%20any%0A%23ListenAddress%200.0.0.0%0A%23ListenAddress%20%3A%3A%0A%0AHostKey%20/etc/ssh/ssh_host_rsa_key%0AHostKey%20/etc/ssh/ssh_host_ecdsa_key%0AHostKey%20/etc/ssh/ssh_host_ed25519_key%0A%0A%23%20Ciphers%20and%20keying%0ARekeyLimit%20512M%201h%0A%0A%23%20System-wide%20Crypto%20policy%3A%0A%23%20This%20system%20is%20following%20system-wide%20crypto%20policy.%20The%20changes%20to%0A%23%20Ciphers%2C%20MACs%2C%20KexAlgoritms%20and%20GSSAPIKexAlgorithsm%20will%20not%20have%20any%0A%23%20effect%20here.%20They%20will%20be%20overridden%20by%20command-line%20options%20passed%20on%0A%23%20the%20server%20start%20up.%0A%23%20To%20opt%20out%2C%20uncomment%20a%20line%20with%20redefinition%20of%20%20CRYPTO_POLICY%3D%0A%23%20variable%20in%20%20/etc/sysconfig/sshd%20%20to%20overwrite%20the%20policy.%0A%23%20For%20more%20information%2C%20see%20manual%20page%20for%20update-crypto-policies%288%29.%0A%0A%23%20Logging%0A%23SyslogFacility%20AUTH%0ASyslogFacility%20AUTHPRIV%0A%23LogLevel%20INFO%0A%0A%23%20Authentication%3A%0A%0A%23LoginGraceTime%202m%0APermitRootLogin%20no%0AStrictModes%20yes%0A%23MaxAuthTries%206%0A%23MaxSessions%2010%0A%0APubkeyAuthentication%20yes%0A%0A%23%20The%20default%20is%20to%20check%20both%20.ssh/authorized_keys%20and%20.ssh/authorized_keys2%0A%23%20but%20this%20is%20overridden%20so%20installations%20will%20only%20check%20.ssh/authorized_keys%0AAuthorizedKeysFile%09.ssh/authorized_keys%0A%0A%23AuthorizedPrincipalsFile%20none%0A%0A%23AuthorizedKeysCommand%20none%0A%23AuthorizedKeysCommandUser%20nobody%0A%0A%23%20For%20this%20to%20work%20you%20will%20also%20need%20host%20keys%20in%20/etc/ssh/ssh_known_hosts%0AHostbasedAuthentication%20no%0A%23%20Change%20to%20yes%20if%20you%20don%27t%20trust%20%7E/.ssh/known_hosts%20for%0A%23%20HostbasedAuthentication%0AIgnoreUserKnownHosts%20yes%0A%23%20Don%27t%20read%20the%20user%27s%20%7E/.rhosts%20and%20%7E/.shosts%20files%0AIgnoreRhosts%20yes%0A%0A%23%20To%20disable%20tunneled%20clear%20text%20passwords%2C%20change%20to%20no%20here%21%0A%23PasswordAuthentication%20yes%0APermitEmptyPasswords%20no%0APasswordAuthentication%20no%0A%0A%23%20Change%20to%20no%20to%20disable%20s/key%20passwords%0A%23ChallengeResponseAuthentication%20yes%0AChallengeResponseAuthentication%20no%0A%0A%23%20Kerberos%20options%0AKerberosAuthentication%20no%0A%23KerberosOrLocalPasswd%20yes%0A%23KerberosTicketCleanup%20yes%0A%23KerberosGetAFSToken%20no%0A%23KerberosUseKuserok%20yes%0A%0A%23%20GSSAPI%20options%0AGSSAPIAuthentication%20no%0AGSSAPICleanupCredentials%20no%0A%23GSSAPIStrictAcceptorCheck%20yes%0A%23GSSAPIKeyExchange%20no%0A%23GSSAPIEnablek5users%20no%0A%0A%23%20Set%20this%20to%20%27yes%27%20to%20enable%20PAM%20authentication%2C%20account%20processing%2C%0A%23%20and%20session%20processing.%20If%20this%20is%20enabled%2C%20PAM%20authentication%20will%0A%23%20be%20allowed%20through%20the%20ChallengeResponseAuthentication%20and%0A%23%20PasswordAuthentication.%20%20Depending%20on%20your%20PAM%20configuration%2C%0A%23%20PAM%20authentication%20via%20ChallengeResponseAuthentication%20may%20bypass%0A%23%20the%20setting%20of%20%22PermitRootLogin%20without-password%22.%0A%23%20If%20you%20just%20want%20the%20PAM%20account%20and%20session%20checks%20to%20run%20without%0A%23%20PAM%20authentication%2C%20then%20enable%20this%20but%20set%20PasswordAuthentication%0A%23%20and%20ChallengeResponseAuthentication%20to%20%27no%27.%0A%23%20WARNING%3A%20%27UsePAM%20no%27%20is%20not%20supported%20in%20Fedora%20and%20may%20cause%20several%0A%23%20problems.%0AUsePAM%20yes%0A%0A%23AllowAgentForwarding%20yes%0A%23AllowTcpForwarding%20yes%0A%23GatewayPorts%20no%0AX11Forwarding%20yes%0A%23X11DisplayOffset%2010%0A%23X11UseLocalhost%20yes%0A%23PermitTTY%20yes%0A%0A%23%20It%20is%20recommended%20to%20use%20pam_motd%20in%20/etc/pam.d/sshd%20instead%20of%20PrintMotd%2C%0A%23%20as%20it%20is%20more%20configurable%20and%20versatile%20than%20the%20built-in%20version.%0APrintMotd%20no%0A%0APrintLastLog%20yes%0A%23TCPKeepAlive%20yes%0APermitUserEnvironment%20no%0ACompression%20no%0AClientAliveInterval%20600%0AClientAliveCountMax%200%0A%23UseDNS%20no%0A%23PidFile%20/var/run/sshd.pid%0A%23MaxStartups%2010%3A30%3A100%0A%23PermitTunnel%20no%0A%23ChrootDirectory%20none%0A%23VersionAddendum%20none%0A%0A%23%20no%20default%20banner%20path%0ABanner%20/etc/issue%0A%0A%23%20Accept%20locale-related%20environment%20variables%0AAcceptEnv%20LANG%20LC_CTYPE%20LC_NUMERIC%20LC_TIME%20LC_COLLATE%20LC_MONETARY%20LC_MESSAGES%0AAcceptEnv%20LC_PAPER%20LC_NAME%20LC_ADDRESS%20LC_TELEPHONE%20LC_MEASUREMENT%0AAcceptEnv%20LC_IDENTIFICATION%20LC_ALL%20LANGUAGE%0AAcceptEnv%20XMODIFIERS%0A%0A%23%20override%20default%20of%20no%20subsystems%0ASubsystem%09sftp%09/usr/libexec/openssh/sftp-server%0A%0A%23%20Example%20of%20overriding%20settings%20on%20a%20per-user%20basis%0A%23Match%20User%20anoncvs%0A%23%09X11Forwarding%20no%0A%23%09AllowTcpForwarding%20no%0A%23%09PermitTTY%20no%0A%23%09ForceCommand%20cvs%20server%0A%0AUsePrivilegeSeparation%20sandbox
+        mode: 384
+        overwrite: true
+        path: /etc/ssh/sshd_config
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-sshd-disable-user-known-hosts
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,%0A%23%09%24OpenBSD%3A%20sshd_config%2Cv%201.103%202018/04/09%2020%3A41%3A22%20tj%20Exp%20%24%0A%0A%23%20This%20is%20the%20sshd%20server%20system-wide%20configuration%20file.%20%20See%0A%23%20sshd_config%285%29%20for%20more%20information.%0A%0A%23%20This%20sshd%20was%20compiled%20with%20PATH%3D/usr/local/bin%3A/usr/bin%3A/usr/local/sbin%3A/usr/sbin%0A%0A%23%20The%20strategy%20used%20for%20options%20in%20the%20default%20sshd_config%20shipped%20with%0A%23%20OpenSSH%20is%20to%20specify%20options%20with%20their%20default%20value%20where%0A%23%20possible%2C%20but%20leave%20them%20commented.%20%20Uncommented%20options%20override%20the%0A%23%20default%20value.%0A%0A%23%20If%20you%20want%20to%20change%20the%20port%20on%20a%20SELinux%20system%2C%20you%20have%20to%20tell%0A%23%20SELinux%20about%20this%20change.%0A%23%20semanage%20port%20-a%20-t%20ssh_port_t%20-p%20tcp%20%23PORTNUMBER%0A%23%0A%23Port%2022%0A%23AddressFamily%20any%0A%23ListenAddress%200.0.0.0%0A%23ListenAddress%20%3A%3A%0A%0AHostKey%20/etc/ssh/ssh_host_rsa_key%0AHostKey%20/etc/ssh/ssh_host_ecdsa_key%0AHostKey%20/etc/ssh/ssh_host_ed25519_key%0A%0A%23%20Ciphers%20and%20keying%0ARekeyLimit%20512M%201h%0A%0A%23%20System-wide%20Crypto%20policy%3A%0A%23%20This%20system%20is%20following%20system-wide%20crypto%20policy.%20The%20changes%20to%0A%23%20Ciphers%2C%20MACs%2C%20KexAlgoritms%20and%20GSSAPIKexAlgorithsm%20will%20not%20have%20any%0A%23%20effect%20here.%20They%20will%20be%20overridden%20by%20command-line%20options%20passed%20on%0A%23%20the%20server%20start%20up.%0A%23%20To%20opt%20out%2C%20uncomment%20a%20line%20with%20redefinition%20of%20%20CRYPTO_POLICY%3D%0A%23%20variable%20in%20%20/etc/sysconfig/sshd%20%20to%20overwrite%20the%20policy.%0A%23%20For%20more%20information%2C%20see%20manual%20page%20for%20update-crypto-policies%288%29.%0A%0A%23%20Logging%0A%23SyslogFacility%20AUTH%0ASyslogFacility%20AUTHPRIV%0A%23LogLevel%20INFO%0A%0A%23%20Authentication%3A%0A%0A%23LoginGraceTime%202m%0APermitRootLogin%20no%0AStrictModes%20yes%0A%23MaxAuthTries%206%0A%23MaxSessions%2010%0A%0APubkeyAuthentication%20yes%0A%0A%23%20The%20default%20is%20to%20check%20both%20.ssh/authorized_keys%20and%20.ssh/authorized_keys2%0A%23%20but%20this%20is%20overridden%20so%20installations%20will%20only%20check%20.ssh/authorized_keys%0AAuthorizedKeysFile%09.ssh/authorized_keys%0A%0A%23AuthorizedPrincipalsFile%20none%0A%0A%23AuthorizedKeysCommand%20none%0A%23AuthorizedKeysCommandUser%20nobody%0A%0A%23%20For%20this%20to%20work%20you%20will%20also%20need%20host%20keys%20in%20/etc/ssh/ssh_known_hosts%0AHostbasedAuthentication%20no%0A%23%20Change%20to%20yes%20if%20you%20don%27t%20trust%20%7E/.ssh/known_hosts%20for%0A%23%20HostbasedAuthentication%0AIgnoreUserKnownHosts%20yes%0A%23%20Don%27t%20read%20the%20user%27s%20%7E/.rhosts%20and%20%7E/.shosts%20files%0AIgnoreRhosts%20yes%0A%0A%23%20To%20disable%20tunneled%20clear%20text%20passwords%2C%20change%20to%20no%20here%21%0A%23PasswordAuthentication%20yes%0APermitEmptyPasswords%20no%0APasswordAuthentication%20no%0A%0A%23%20Change%20to%20no%20to%20disable%20s/key%20passwords%0A%23ChallengeResponseAuthentication%20yes%0AChallengeResponseAuthentication%20no%0A%0A%23%20Kerberos%20options%0AKerberosAuthentication%20no%0A%23KerberosOrLocalPasswd%20yes%0A%23KerberosTicketCleanup%20yes%0A%23KerberosGetAFSToken%20no%0A%23KerberosUseKuserok%20yes%0A%0A%23%20GSSAPI%20options%0AGSSAPIAuthentication%20no%0AGSSAPICleanupCredentials%20no%0A%23GSSAPIStrictAcceptorCheck%20yes%0A%23GSSAPIKeyExchange%20no%0A%23GSSAPIEnablek5users%20no%0A%0A%23%20Set%20this%20to%20%27yes%27%20to%20enable%20PAM%20authentication%2C%20account%20processing%2C%0A%23%20and%20session%20processing.%20If%20this%20is%20enabled%2C%20PAM%20authentication%20will%0A%23%20be%20allowed%20through%20the%20ChallengeResponseAuthentication%20and%0A%23%20PasswordAuthentication.%20%20Depending%20on%20your%20PAM%20configuration%2C%0A%23%20PAM%20authentication%20via%20ChallengeResponseAuthentication%20may%20bypass%0A%23%20the%20setting%20of%20%22PermitRootLogin%20without-password%22.%0A%23%20If%20you%20just%20want%20the%20PAM%20account%20and%20session%20checks%20to%20run%20without%0A%23%20PAM%20authentication%2C%20then%20enable%20this%20but%20set%20PasswordAuthentication%0A%23%20and%20ChallengeResponseAuthentication%20to%20%27no%27.%0A%23%20WARNING%3A%20%27UsePAM%20no%27%20is%20not%20supported%20in%20Fedora%20and%20may%20cause%20several%0A%23%20problems.%0AUsePAM%20yes%0A%0A%23AllowAgentForwarding%20yes%0A%23AllowTcpForwarding%20yes%0A%23GatewayPorts%20no%0AX11Forwarding%20yes%0A%23X11DisplayOffset%2010%0A%23X11UseLocalhost%20yes%0A%23PermitTTY%20yes%0A%0A%23%20It%20is%20recommended%20to%20use%20pam_motd%20in%20/etc/pam.d/sshd%20instead%20of%20PrintMotd%2C%0A%23%20as%20it%20is%20more%20configurable%20and%20versatile%20than%20the%20built-in%20version.%0APrintMotd%20no%0A%0APrintLastLog%20yes%0A%23TCPKeepAlive%20yes%0APermitUserEnvironment%20no%0ACompression%20no%0AClientAliveInterval%20600%0AClientAliveCountMax%200%0A%23UseDNS%20no%0A%23PidFile%20/var/run/sshd.pid%0A%23MaxStartups%2010%3A30%3A100%0A%23PermitTunnel%20no%0A%23ChrootDirectory%20none%0A%23VersionAddendum%20none%0A%0A%23%20no%20default%20banner%20path%0ABanner%20/etc/issue%0A%0A%23%20Accept%20locale-related%20environment%20variables%0AAcceptEnv%20LANG%20LC_CTYPE%20LC_NUMERIC%20LC_TIME%20LC_COLLATE%20LC_MONETARY%20LC_MESSAGES%0AAcceptEnv%20LC_PAPER%20LC_NAME%20LC_ADDRESS%20LC_TELEPHONE%20LC_MEASUREMENT%0AAcceptEnv%20LC_IDENTIFICATION%20LC_ALL%20LANGUAGE%0AAcceptEnv%20XMODIFIERS%0A%0A%23%20override%20default%20of%20no%20subsystems%0ASubsystem%09sftp%09/usr/libexec/openssh/sftp-server%0A%0A%23%20Example%20of%20overriding%20settings%20on%20a%20per-user%20basis%0A%23Match%20User%20anoncvs%0A%23%09X11Forwarding%20no%0A%23%09AllowTcpForwarding%20no%0A%23%09PermitTTY%20no%0A%23%09ForceCommand%20cvs%20server%0A%0AUsePrivilegeSeparation%20sandbox
+        mode: 384
+        overwrite: true
+        path: /etc/ssh/sshd_config
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-sysctl-kernel-dmesg-restrict
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,kernel.dmesg_restrict%3D1%0A
+        mode: 420
+        overwrite: true
+        path: /etc/sysctl.d/75-sysctl_kernel_dmesg_restrict.conf
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-sysctl-kernel-randomize-va-space
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,kernel.randomize_va_space%3D2%0A
+        mode: 420
+        overwrite: true
+        path: /etc/sysctl.d/75-sysctl_kernel_randomize_va_space.conf
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-sysctl-kernel-unprivileged-bpf-disabled
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,kernel.unprivileged_bpf_disabled%3D1%0A
+        mode: 420
+        overwrite: true
+        path: /etc/sysctl.d/75-sysctl_kernel_unprivileged_bpf_disabled.conf
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-sysctl-kernel-yama-ptrace-scope
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,kernel.yama.ptrace_scope%3D1%0A
+        mode: 420
+        overwrite: true
+        path: /etc/sysctl.d/75-sysctl_kernel_yama_ptrace_scope.conf
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-master-sysctl-net-core-bpf-jit-harden
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,net.core.bpf_jit_harden%3D2%0A
+        mode: 420
+        overwrite: true
+        path: /etc/sysctl.d/75-sysctl_net_core_bpf_jit_harden.conf
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-dac-modification-chmod
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20arch%3Db32%20-S%20chmod%20-F%20auid%3E%3D1000%20-F%20auid%21%3Dunset%20-F%20key%3Dperm_mod%0A-a%20always%2Cexit%20-F%20arch%3Db64%20-S%20chmod%20-F%20auid%3E%3D1000%20-F%20auid%21%3Dunset%20-F%20key%3Dperm_mod%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-chmod_dac_modification.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-dac-modification-chown
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20arch%3Db32%20-S%20chown%20-F%20auid%3E%3D1000%20-F%20auid%21%3Dunset%20-F%20key%3Dperm_mod%0A-a%20always%2Cexit%20-F%20arch%3Db64%20-S%20chown%20-F%20auid%3E%3D1000%20-F%20auid%21%3Dunset%20-F%20key%3Dperm_mod%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-chown_dac_modification.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-execution-chcon
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20path%3D/usr/bin/chcon%20-F%20auid%3E%3D1000%20-F%20auid%21%3Dunset%20-F%20key%3Dprivileged%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-usr_bin_chcon_execution.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-execution-restorecon
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20path%3D/usr/sbin/restorecon%20-F%20auid%3E%3D1000%20-F%20auid%21%3Dunset%20-F%20key%3Dprivileged%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-usr_sbin_restorecon_execution.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-execution-semanage
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20path%3D/usr/sbin/semanage%20-F%20auid%3E%3D1000%20-F%20auid%21%3Dunset%20-F%20key%3Dprivileged%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-usr_sbin_semanage_execution.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-execution-setfiles
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20path%3D/usr/sbin/setfiles%20-F%20auid%3E%3D1000%20-F%20auid%21%3Dunset%20-F%20key%3Dprivileged%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-usr_sbin_setfiles_execution.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-execution-setsebool
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20path%3D/usr/sbin/setsebool%20-F%20auid%3E%3D1000%20-F%20auid%21%3Dunset%20-F%20key%3Dprivileged%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-usr_sbin_setsebool_execution.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-execution-seunshare
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20path%3D/usr/sbin/seunshare%20-F%20auid%3E%3D1000%20-F%20auid%21%3Dunset%20-F%20key%3Dprivileged%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-usr_sbin_seunshare_execution.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-kernel-module-loading-delete
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20arch%3Db32%20-S%20delete_module%20-k%20module-change%0A-a%20always%2Cexit%20-F%20arch%3Db64%20-S%20delete_module%20-k%20module-change%0A
+        mode: 384
+        overwrite: true
+        path: /etc/audit/rules.d/75-kernel-module-loading-delete.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-kernel-module-loading-finit
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20arch%3Db32%20-S%20finit_module%20-k%20module-change%0A-a%20always%2Cexit%20-F%20arch%3Db64%20-S%20finit_module%20-k%20module-change%0A
+        mode: 384
+        overwrite: true
+        path: /etc/audit/rules.d/75-kernel-module-loading-finit.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-kernel-module-loading-init
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20arch%3Db32%20-S%20init_module%20-k%20module-change%0A-a%20always%2Cexit%20-F%20arch%3Db64%20-S%20init_module%20-k%20module-change%0A
+        mode: 384
+        overwrite: true
+        path: /etc/audit/rules.d/75-kernel-module-loading-init.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-login-events-faillock
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-w%20/var/run/faillock%20-p%20wa%20-k%20logins%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-faillock_login_events.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-login-events-lastlog
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-w%20/var/log/lastlog%20-p%20wa%20-k%20logins%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-lastlog_login_events.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-login-events-tallylog
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-w%20/var/log/tallylog%20-p%20wa%20-k%20logins%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-tallylog_login_events.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-networkconfig-modification
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20arch%3Db32%20-S%20sethostname%2Csetdomainname%20-F%20key%3Daudit_rules_networkconfig_modification%0A-a%20always%2Cexit%20-F%20arch%3Db64%20-S%20sethostname%2Csetdomainname%20-F%20key%3Daudit_rules_networkconfig_modification%0A-w%20/etc/issue%20-p%20wa%20-k%20audit_rules_networkconfig_modification%0A-w%20/etc/issue.net%20-p%20wa%20-k%20audit_rules_networkconfig_modification%0A-w%20/etc/hosts%20-p%20wa%20-k%20audit_rules_networkconfig_modification%0A-w%20/etc/sysconfig/network%20-p%20wa%20-k%20audit_rules_networkconfig_modification%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-audit_rules_networkconfig_modification.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-sysadmin-actions
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-w%20/etc/sudoers.d/%20-p%20wa%20-k%20actions%0A-w%20/etc/sudoers%20-p%20wa%20-k%20actions%0A
+        mode: 384
+        overwrite: true
+        path: /etc/audit/rules.d/75-audit-sysadmin-actions.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-time-adjtimex
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20arch%3Db64%20-S%20adjtimex%20-k%20audit_time_rules%0A-a%20always%2Cexit%20-F%20arch%3Db32%20-S%20adjtimex%20-k%20audit_time_rules%0A
+        mode: 384
+        overwrite: true
+        path: /etc/audit/rules.d/75-syscall-adjtimex.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-time-clock-settime
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20arch%3Db64%20-S%20clock_settime%20-F%20a0%3D0x0%20-k%20time-change%0A-a%20always%2Cexit%20-F%20arch%3Db32%20-S%20clock_settime%20-F%20a0%3D0x0%20-k%20time-change%0A
+        mode: 384
+        overwrite: true
+        path: /etc/audit/rules.d/75-syscall-clock-settime.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-time-settimeofday
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20arch%3Db64%20-S%20settimeofday%20-k%20audit_time_rules%0A-a%20always%2Cexit%20-F%20arch%3Db32%20-S%20settimeofday%20-k%20audit_time_rules%0A
+        mode: 384
+        overwrite: true
+        path: /etc/audit/rules.d/75-syscall-settimeofday.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-time-stime
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-a%20always%2Cexit%20-F%20arch%3Db64%20-S%20stime%20-k%20audit_time_rules%0A-a%20always%2Cexit%20-F%20arch%3Db32%20-S%20stime%20-k%20audit_time_rules%0A
+        mode: 384
+        overwrite: true
+        path: /etc/audit/rules.d/75-syscall-stime.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-time-watch-localtime
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-w%20/etc/localtime%20-p%20wa%20-k%20audit_time_rules%0A
+        mode: 384
+        overwrite: true
+        path: /etc/audit/rules.d/75-etclocaltime-wa-audit_time_rules.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-audit-rules-usergroup-modification
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,-w%20/etc/group%20-p%20wa%20-k%20audit_rules_usergroup_modification%0A-w%20/etc/passwd%20-p%20wa%20-k%20audit_rules_usergroup_modification%0A-w%20/etc/gshadow%20-p%20wa%20-k%20audit_rules_usergroup_modification%0A-w%20/etc/shadow%20-p%20wa%20-k%20audit_rules_usergroup_modification%0A-w%20/etc/security/opasswd%20-p%20wa%20-k%20audit_rules_usergroup_modification%0A
+        mode: 420
+        overwrite: true
+        path: /etc/audit/rules.d/75-audit_rules_usergroup_modification.rules
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-auditd-name-format
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,%23%0A%23%20This%20file%20controls%20the%20configuration%20of%20the%20audit%20daemon%0A%23%0A%0Alocal_events%20%3D%20yes%0Awrite_logs%20%3D%20yes%0Alog_file%20%3D%20/var/log/audit/audit.log%0Alog_group%20%3D%20root%0Alog_format%20%3D%20ENRICHED%0Aflush%20%3D%20incremental_async%0Afreq%20%3D%2050%0Amax_log_file%20%3D%208%0Anum_logs%20%3D%205%0Apriority_boost%20%3D%204%0Aname_format%20%3D%20hostname%0A%23%23name%20%3D%20mydomain%0Amax_log_file_action%20%3D%20rotate%0Aspace_left%20%3D%20100%0Aspace_left_action%20%3D%20syslog%0Averify_email%20%3D%20yes%0Aaction_mail_acct%20%3D%20root%0Aadmin_space_left%20%3D%2050%0Aadmin_space_left_action%20%3D%20syslog%0Adisk_full_action%20%3D%20syslog%0Adisk_error_action%20%3D%20syslog%0Ause_libwrap%20%3D%20yes%0A%23%23tcp_listen_port%20%3D%2060%0Atcp_listen_queue%20%3D%205%0Atcp_max_per_addr%20%3D%201%0A%23%23tcp_client_ports%20%3D%201024-65535%0Atcp_client_max_idle%20%3D%200%0Atransport%20%3D%20TCP%0Akrb5_principal%20%3D%20auditd%0A%23%23krb5_key_file%20%3D%20/etc/audit/audit.key%0Adistribute_network%20%3D%20no%0Aq_depth%20%3D%20400%0Aoverflow_action%20%3D%20syslog%0Amax_restarts%20%3D%2010%0Aplugin_dir%20%3D%20/etc/audit/plugins.d
+        mode: 416
+        overwrite: true
+        path: /etc/audit/auditd.conf
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-no-empty-passwords
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,%23%20Generated%20by%20authselect%20on%20Sat%20Oct%2027%2014%3A59%3A36%202018%0A%23%20Do%20not%20modify%20this%20file%20manually.%0A%0Aauth%20%20%20%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_env.so%0Aauth%20%20%20%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_faildelay.so%20delay%3D2000000%0Aauth%20%20%20%20%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_fprintd.so%0Aauth%20%20%20%20%20%20%20%20%5Bdefault%3D1%20ignore%3Dignore%20success%3Dok%5D%20%20%20%20%20%20%20%20%20pam_succeed_if.so%20uid%20%3E%3D%201000%20quiet%0Aauth%20%20%20%20%20%20%20%20%5Bdefault%3D1%20ignore%3Dignore%20success%3Dok%5D%20%20%20%20%20%20%20%20%20pam_localuser.so%0Aauth%20%20%20%20%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_unix.so%20try_first_pass%0Aauth%20%20%20%20%20%20%20%20requisite%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_succeed_if.so%20uid%20%3E%3D%201000%20quiet_success%0Aauth%20%20%20%20%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_sss.so%20forward_pass%0Aauth%20%20%20%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_deny.so%0A%0Aaccount%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_unix.so%0Aaccount%20%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_localuser.so%0Aaccount%20%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_succeed_if.so%20uid%20%3C%201000%20quiet%0Aaccount%20%20%20%20%20%5Bdefault%3Dbad%20success%3Dok%20user_unknown%3Dignore%5D%20pam_sss.so%0Aaccount%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_permit.so%0A%0Apassword%20%20%20%20requisite%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_pwquality.so%20try_first_pass%20local_users_only%0Apassword%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_unix.so%20sha512%20shadow%20try_first_pass%20use_authtok%0Apassword%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_sss.so%20use_authtok%0Apassword%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_deny.so%0A%0Asession%20%20%20%20%20optional%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_keyinit.so%20revoke%0Asession%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_limits.so%0A-session%20%20%20%20optional%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_systemd.so%0Asession%20%20%20%20%20%5Bsuccess%3D1%20default%3Dignore%5D%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_succeed_if.so%20service%20in%20crond%20quiet%20use_uid%0Asession%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_unix.so%0Asession%20%20%20%20%20optional%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_sss.so%0A
+        mode: 420
+        overwrite: true
+        path: /etc/pam.d/password-auth
+      - contents:
+          source: data:,%23%20Generated%20by%20authselect%20on%20Sat%20Oct%2027%2014%3A59%3A36%202018%0A%23%20Do%20not%20modify%20this%20file%20manually.%0A%0Aauth%20%20%20%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_env.so%0Aauth%20%20%20%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_faildelay.so%20delay%3D2000000%0Aauth%20%20%20%20%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_fprintd.so%0Aauth%20%20%20%20%20%20%20%20%5Bdefault%3D1%20ignore%3Dignore%20success%3Dok%5D%20%20%20%20%20%20%20%20%20pam_succeed_if.so%20uid%20%3E%3D%201000%20quiet%0Aauth%20%20%20%20%20%20%20%20%5Bdefault%3D1%20ignore%3Dignore%20success%3Dok%5D%20%20%20%20%20%20%20%20%20pam_localuser.so%0Aauth%20%20%20%20%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_unix.so%20try_first_pass%0Aauth%20%20%20%20%20%20%20%20requisite%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_succeed_if.so%20uid%20%3E%3D%201000%20quiet_success%0Aauth%20%20%20%20%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_sss.so%20forward_pass%0Aauth%20%20%20%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_deny.so%0A%0Aaccount%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_unix.so%0Aaccount%20%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_localuser.so%0Aaccount%20%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_succeed_if.so%20uid%20%3C%201000%20quiet%0Aaccount%20%20%20%20%20%5Bdefault%3Dbad%20success%3Dok%20user_unknown%3Dignore%5D%20pam_sss.so%0Aaccount%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_permit.so%0A%0Apassword%20%20%20%20requisite%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_pwquality.so%20try_first_pass%20local_users_only%0Apassword%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_unix.so%20sha512%20shadow%20try_first_pass%20use_authtok%0Apassword%20%20%20%20sufficient%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_sss.so%20use_authtok%0Apassword%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_deny.so%0A%0Asession%20%20%20%20%20optional%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_keyinit.so%20revoke%0Asession%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_limits.so%0A-session%20%20%20%20optional%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_systemd.so%0Asession%20%20%20%20%20%5Bsuccess%3D1%20default%3Dignore%5D%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_succeed_if.so%20service%20in%20crond%20quiet%20use_uid%0Asession%20%20%20%20%20required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_unix.so%0Asession%20%20%20%20%20optional%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pam_sss.so%0A
+        mode: 420
+        overwrite: true
+        path: /etc/pam.d/system-auth
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-sshd-disable-gssapi-auth
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,%0A%23%09%24OpenBSD%3A%20sshd_config%2Cv%201.103%202018/04/09%2020%3A41%3A22%20tj%20Exp%20%24%0A%0A%23%20This%20is%20the%20sshd%20server%20system-wide%20configuration%20file.%20%20See%0A%23%20sshd_config%285%29%20for%20more%20information.%0A%0A%23%20This%20sshd%20was%20compiled%20with%20PATH%3D/usr/local/bin%3A/usr/bin%3A/usr/local/sbin%3A/usr/sbin%0A%0A%23%20The%20strategy%20used%20for%20options%20in%20the%20default%20sshd_config%20shipped%20with%0A%23%20OpenSSH%20is%20to%20specify%20options%20with%20their%20default%20value%20where%0A%23%20possible%2C%20but%20leave%20them%20commented.%20%20Uncommented%20options%20override%20the%0A%23%20default%20value.%0A%0A%23%20If%20you%20want%20to%20change%20the%20port%20on%20a%20SELinux%20system%2C%20you%20have%20to%20tell%0A%23%20SELinux%20about%20this%20change.%0A%23%20semanage%20port%20-a%20-t%20ssh_port_t%20-p%20tcp%20%23PORTNUMBER%0A%23%0A%23Port%2022%0A%23AddressFamily%20any%0A%23ListenAddress%200.0.0.0%0A%23ListenAddress%20%3A%3A%0A%0AHostKey%20/etc/ssh/ssh_host_rsa_key%0AHostKey%20/etc/ssh/ssh_host_ecdsa_key%0AHostKey%20/etc/ssh/ssh_host_ed25519_key%0A%0A%23%20Ciphers%20and%20keying%0ARekeyLimit%20512M%201h%0A%0A%23%20System-wide%20Crypto%20policy%3A%0A%23%20This%20system%20is%20following%20system-wide%20crypto%20policy.%20The%20changes%20to%0A%23%20Ciphers%2C%20MACs%2C%20KexAlgoritms%20and%20GSSAPIKexAlgorithsm%20will%20not%20have%20any%0A%23%20effect%20here.%20They%20will%20be%20overridden%20by%20command-line%20options%20passed%20on%0A%23%20the%20server%20start%20up.%0A%23%20To%20opt%20out%2C%20uncomment%20a%20line%20with%20redefinition%20of%20%20CRYPTO_POLICY%3D%0A%23%20variable%20in%20%20/etc/sysconfig/sshd%20%20to%20overwrite%20the%20policy.%0A%23%20For%20more%20information%2C%20see%20manual%20page%20for%20update-crypto-policies%288%29.%0A%0A%23%20Logging%0A%23SyslogFacility%20AUTH%0ASyslogFacility%20AUTHPRIV%0A%23LogLevel%20INFO%0A%0A%23%20Authentication%3A%0A%0A%23LoginGraceTime%202m%0APermitRootLogin%20no%0AStrictModes%20yes%0A%23MaxAuthTries%206%0A%23MaxSessions%2010%0A%0APubkeyAuthentication%20yes%0A%0A%23%20The%20default%20is%20to%20check%20both%20.ssh/authorized_keys%20and%20.ssh/authorized_keys2%0A%23%20but%20this%20is%20overridden%20so%20installations%20will%20only%20check%20.ssh/authorized_keys%0AAuthorizedKeysFile%09.ssh/authorized_keys%0A%0A%23AuthorizedPrincipalsFile%20none%0A%0A%23AuthorizedKeysCommand%20none%0A%23AuthorizedKeysCommandUser%20nobody%0A%0A%23%20For%20this%20to%20work%20you%20will%20also%20need%20host%20keys%20in%20/etc/ssh/ssh_known_hosts%0AHostbasedAuthentication%20no%0A%23%20Change%20to%20yes%20if%20you%20don%27t%20trust%20%7E/.ssh/known_hosts%20for%0A%23%20HostbasedAuthentication%0AIgnoreUserKnownHosts%20yes%0A%23%20Don%27t%20read%20the%20user%27s%20%7E/.rhosts%20and%20%7E/.shosts%20files%0AIgnoreRhosts%20yes%0A%0A%23%20To%20disable%20tunneled%20clear%20text%20passwords%2C%20change%20to%20no%20here%21%0A%23PasswordAuthentication%20yes%0APermitEmptyPasswords%20no%0APasswordAuthentication%20no%0A%0A%23%20Change%20to%20no%20to%20disable%20s/key%20passwords%0A%23ChallengeResponseAuthentication%20yes%0AChallengeResponseAuthentication%20no%0A%0A%23%20Kerberos%20options%0AKerberosAuthentication%20no%0A%23KerberosOrLocalPasswd%20yes%0A%23KerberosTicketCleanup%20yes%0A%23KerberosGetAFSToken%20no%0A%23KerberosUseKuserok%20yes%0A%0A%23%20GSSAPI%20options%0AGSSAPIAuthentication%20no%0AGSSAPICleanupCredentials%20no%0A%23GSSAPIStrictAcceptorCheck%20yes%0A%23GSSAPIKeyExchange%20no%0A%23GSSAPIEnablek5users%20no%0A%0A%23%20Set%20this%20to%20%27yes%27%20to%20enable%20PAM%20authentication%2C%20account%20processing%2C%0A%23%20and%20session%20processing.%20If%20this%20is%20enabled%2C%20PAM%20authentication%20will%0A%23%20be%20allowed%20through%20the%20ChallengeResponseAuthentication%20and%0A%23%20PasswordAuthentication.%20%20Depending%20on%20your%20PAM%20configuration%2C%0A%23%20PAM%20authentication%20via%20ChallengeResponseAuthentication%20may%20bypass%0A%23%20the%20setting%20of%20%22PermitRootLogin%20without-password%22.%0A%23%20If%20you%20just%20want%20the%20PAM%20account%20and%20session%20checks%20to%20run%20without%0A%23%20PAM%20authentication%2C%20then%20enable%20this%20but%20set%20PasswordAuthentication%0A%23%20and%20ChallengeResponseAuthentication%20to%20%27no%27.%0A%23%20WARNING%3A%20%27UsePAM%20no%27%20is%20not%20supported%20in%20Fedora%20and%20may%20cause%20several%0A%23%20problems.%0AUsePAM%20yes%0A%0A%23AllowAgentForwarding%20yes%0A%23AllowTcpForwarding%20yes%0A%23GatewayPorts%20no%0AX11Forwarding%20yes%0A%23X11DisplayOffset%2010%0A%23X11UseLocalhost%20yes%0A%23PermitTTY%20yes%0A%0A%23%20It%20is%20recommended%20to%20use%20pam_motd%20in%20/etc/pam.d/sshd%20instead%20of%20PrintMotd%2C%0A%23%20as%20it%20is%20more%20configurable%20and%20versatile%20than%20the%20built-in%20version.%0APrintMotd%20no%0A%0APrintLastLog%20yes%0A%23TCPKeepAlive%20yes%0APermitUserEnvironment%20no%0ACompression%20no%0AClientAliveInterval%20600%0AClientAliveCountMax%200%0A%23UseDNS%20no%0A%23PidFile%20/var/run/sshd.pid%0A%23MaxStartups%2010%3A30%3A100%0A%23PermitTunnel%20no%0A%23ChrootDirectory%20none%0A%23VersionAddendum%20none%0A%0A%23%20no%20default%20banner%20path%0ABanner%20/etc/issue%0A%0A%23%20Accept%20locale-related%20environment%20variables%0AAcceptEnv%20LANG%20LC_CTYPE%20LC_NUMERIC%20LC_TIME%20LC_COLLATE%20LC_MONETARY%20LC_MESSAGES%0AAcceptEnv%20LC_PAPER%20LC_NAME%20LC_ADDRESS%20LC_TELEPHONE%20LC_MEASUREMENT%0AAcceptEnv%20LC_IDENTIFICATION%20LC_ALL%20LANGUAGE%0AAcceptEnv%20XMODIFIERS%0A%0A%23%20override%20default%20of%20no%20subsystems%0ASubsystem%09sftp%09/usr/libexec/openssh/sftp-server%0A%0A%23%20Example%20of%20overriding%20settings%20on%20a%20per-user%20basis%0A%23Match%20User%20anoncvs%0A%23%09X11Forwarding%20no%0A%23%09AllowTcpForwarding%20no%0A%23%09PermitTTY%20no%0A%23%09ForceCommand%20cvs%20server%0A%0AUsePrivilegeSeparation%20sandbox
+        mode: 384
+        overwrite: true
+        path: /etc/ssh/sshd_config
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-sshd-disable-user-known-hosts
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,%0A%23%09%24OpenBSD%3A%20sshd_config%2Cv%201.103%202018/04/09%2020%3A41%3A22%20tj%20Exp%20%24%0A%0A%23%20This%20is%20the%20sshd%20server%20system-wide%20configuration%20file.%20%20See%0A%23%20sshd_config%285%29%20for%20more%20information.%0A%0A%23%20This%20sshd%20was%20compiled%20with%20PATH%3D/usr/local/bin%3A/usr/bin%3A/usr/local/sbin%3A/usr/sbin%0A%0A%23%20The%20strategy%20used%20for%20options%20in%20the%20default%20sshd_config%20shipped%20with%0A%23%20OpenSSH%20is%20to%20specify%20options%20with%20their%20default%20value%20where%0A%23%20possible%2C%20but%20leave%20them%20commented.%20%20Uncommented%20options%20override%20the%0A%23%20default%20value.%0A%0A%23%20If%20you%20want%20to%20change%20the%20port%20on%20a%20SELinux%20system%2C%20you%20have%20to%20tell%0A%23%20SELinux%20about%20this%20change.%0A%23%20semanage%20port%20-a%20-t%20ssh_port_t%20-p%20tcp%20%23PORTNUMBER%0A%23%0A%23Port%2022%0A%23AddressFamily%20any%0A%23ListenAddress%200.0.0.0%0A%23ListenAddress%20%3A%3A%0A%0AHostKey%20/etc/ssh/ssh_host_rsa_key%0AHostKey%20/etc/ssh/ssh_host_ecdsa_key%0AHostKey%20/etc/ssh/ssh_host_ed25519_key%0A%0A%23%20Ciphers%20and%20keying%0ARekeyLimit%20512M%201h%0A%0A%23%20System-wide%20Crypto%20policy%3A%0A%23%20This%20system%20is%20following%20system-wide%20crypto%20policy.%20The%20changes%20to%0A%23%20Ciphers%2C%20MACs%2C%20KexAlgoritms%20and%20GSSAPIKexAlgorithsm%20will%20not%20have%20any%0A%23%20effect%20here.%20They%20will%20be%20overridden%20by%20command-line%20options%20passed%20on%0A%23%20the%20server%20start%20up.%0A%23%20To%20opt%20out%2C%20uncomment%20a%20line%20with%20redefinition%20of%20%20CRYPTO_POLICY%3D%0A%23%20variable%20in%20%20/etc/sysconfig/sshd%20%20to%20overwrite%20the%20policy.%0A%23%20For%20more%20information%2C%20see%20manual%20page%20for%20update-crypto-policies%288%29.%0A%0A%23%20Logging%0A%23SyslogFacility%20AUTH%0ASyslogFacility%20AUTHPRIV%0A%23LogLevel%20INFO%0A%0A%23%20Authentication%3A%0A%0A%23LoginGraceTime%202m%0APermitRootLogin%20no%0AStrictModes%20yes%0A%23MaxAuthTries%206%0A%23MaxSessions%2010%0A%0APubkeyAuthentication%20yes%0A%0A%23%20The%20default%20is%20to%20check%20both%20.ssh/authorized_keys%20and%20.ssh/authorized_keys2%0A%23%20but%20this%20is%20overridden%20so%20installations%20will%20only%20check%20.ssh/authorized_keys%0AAuthorizedKeysFile%09.ssh/authorized_keys%0A%0A%23AuthorizedPrincipalsFile%20none%0A%0A%23AuthorizedKeysCommand%20none%0A%23AuthorizedKeysCommandUser%20nobody%0A%0A%23%20For%20this%20to%20work%20you%20will%20also%20need%20host%20keys%20in%20/etc/ssh/ssh_known_hosts%0AHostbasedAuthentication%20no%0A%23%20Change%20to%20yes%20if%20you%20don%27t%20trust%20%7E/.ssh/known_hosts%20for%0A%23%20HostbasedAuthentication%0AIgnoreUserKnownHosts%20yes%0A%23%20Don%27t%20read%20the%20user%27s%20%7E/.rhosts%20and%20%7E/.shosts%20files%0AIgnoreRhosts%20yes%0A%0A%23%20To%20disable%20tunneled%20clear%20text%20passwords%2C%20change%20to%20no%20here%21%0A%23PasswordAuthentication%20yes%0APermitEmptyPasswords%20no%0APasswordAuthentication%20no%0A%0A%23%20Change%20to%20no%20to%20disable%20s/key%20passwords%0A%23ChallengeResponseAuthentication%20yes%0AChallengeResponseAuthentication%20no%0A%0A%23%20Kerberos%20options%0AKerberosAuthentication%20no%0A%23KerberosOrLocalPasswd%20yes%0A%23KerberosTicketCleanup%20yes%0A%23KerberosGetAFSToken%20no%0A%23KerberosUseKuserok%20yes%0A%0A%23%20GSSAPI%20options%0AGSSAPIAuthentication%20no%0AGSSAPICleanupCredentials%20no%0A%23GSSAPIStrictAcceptorCheck%20yes%0A%23GSSAPIKeyExchange%20no%0A%23GSSAPIEnablek5users%20no%0A%0A%23%20Set%20this%20to%20%27yes%27%20to%20enable%20PAM%20authentication%2C%20account%20processing%2C%0A%23%20and%20session%20processing.%20If%20this%20is%20enabled%2C%20PAM%20authentication%20will%0A%23%20be%20allowed%20through%20the%20ChallengeResponseAuthentication%20and%0A%23%20PasswordAuthentication.%20%20Depending%20on%20your%20PAM%20configuration%2C%0A%23%20PAM%20authentication%20via%20ChallengeResponseAuthentication%20may%20bypass%0A%23%20the%20setting%20of%20%22PermitRootLogin%20without-password%22.%0A%23%20If%20you%20just%20want%20the%20PAM%20account%20and%20session%20checks%20to%20run%20without%0A%23%20PAM%20authentication%2C%20then%20enable%20this%20but%20set%20PasswordAuthentication%0A%23%20and%20ChallengeResponseAuthentication%20to%20%27no%27.%0A%23%20WARNING%3A%20%27UsePAM%20no%27%20is%20not%20supported%20in%20Fedora%20and%20may%20cause%20several%0A%23%20problems.%0AUsePAM%20yes%0A%0A%23AllowAgentForwarding%20yes%0A%23AllowTcpForwarding%20yes%0A%23GatewayPorts%20no%0AX11Forwarding%20yes%0A%23X11DisplayOffset%2010%0A%23X11UseLocalhost%20yes%0A%23PermitTTY%20yes%0A%0A%23%20It%20is%20recommended%20to%20use%20pam_motd%20in%20/etc/pam.d/sshd%20instead%20of%20PrintMotd%2C%0A%23%20as%20it%20is%20more%20configurable%20and%20versatile%20than%20the%20built-in%20version.%0APrintMotd%20no%0A%0APrintLastLog%20yes%0A%23TCPKeepAlive%20yes%0APermitUserEnvironment%20no%0ACompression%20no%0AClientAliveInterval%20600%0AClientAliveCountMax%200%0A%23UseDNS%20no%0A%23PidFile%20/var/run/sshd.pid%0A%23MaxStartups%2010%3A30%3A100%0A%23PermitTunnel%20no%0A%23ChrootDirectory%20none%0A%23VersionAddendum%20none%0A%0A%23%20no%20default%20banner%20path%0ABanner%20/etc/issue%0A%0A%23%20Accept%20locale-related%20environment%20variables%0AAcceptEnv%20LANG%20LC_CTYPE%20LC_NUMERIC%20LC_TIME%20LC_COLLATE%20LC_MONETARY%20LC_MESSAGES%0AAcceptEnv%20LC_PAPER%20LC_NAME%20LC_ADDRESS%20LC_TELEPHONE%20LC_MEASUREMENT%0AAcceptEnv%20LC_IDENTIFICATION%20LC_ALL%20LANGUAGE%0AAcceptEnv%20XMODIFIERS%0A%0A%23%20override%20default%20of%20no%20subsystems%0ASubsystem%09sftp%09/usr/libexec/openssh/sftp-server%0A%0A%23%20Example%20of%20overriding%20settings%20on%20a%20per-user%20basis%0A%23Match%20User%20anoncvs%0A%23%09X11Forwarding%20no%0A%23%09AllowTcpForwarding%20no%0A%23%09PermitTTY%20no%0A%23%09ForceCommand%20cvs%20server%0A%0AUsePrivilegeSeparation%20sandbox
+        mode: 384
+        overwrite: true
+        path: /etc/ssh/sshd_config
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-sysctl-kernel-dmesg-restrict
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,kernel.dmesg_restrict%3D1%0A
+        mode: 420
+        overwrite: true
+        path: /etc/sysctl.d/75-sysctl_kernel_dmesg_restrict.conf
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-sysctl-kernel-randomize-va-space
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,kernel.randomize_va_space%3D2%0A
+        mode: 420
+        overwrite: true
+        path: /etc/sysctl.d/75-sysctl_kernel_randomize_va_space.conf
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-sysctl-kernel-unprivileged-bpf-disabled
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,kernel.unprivileged_bpf_disabled%3D1%0A
+        mode: 420
+        overwrite: true
+        path: /etc/sysctl.d/75-sysctl_kernel_unprivileged_bpf_disabled.conf
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-sysctl-kernel-yama-ptrace-scope
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,kernel.yama.ptrace_scope%3D1%0A
+        mode: 420
+        overwrite: true
+        path: /etc/sysctl.d/75-sysctl_kernel_yama_ptrace_scope.conf
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: rhcos4-e8-worker-sysctl-net-core-bpf-jit-harden
+  namespace: openshift-compliance
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:,net.core.bpf_jit_harden%3D2%0A
+        mode: 420
+        overwrite: true
+        path: /etc/sysctl.d/75-sysctl_net_core_bpf_jit_harden.conf
+
