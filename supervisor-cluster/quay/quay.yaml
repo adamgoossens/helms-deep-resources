@@ -3,7 +3,7 @@ apiVersion: quay.redhat.com/v1
 kind: QuayRegistry
 metadata:
 	name: registry
-	namespace: "{{ _quay_namespace }}"
+	namespace: "helms-deep-registry-prod"
 spec:
 	components:
 		- managed: true
