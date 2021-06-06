@@ -1,0 +1,13 @@
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: auditors
+subjects:
+  - kind: Group
+    apiGroup: rbac.authorization.k8s.io
+    name: all-cluster-auditors
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view

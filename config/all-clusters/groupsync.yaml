@@ -1,0 +1,22 @@
+---
+apiVersion: redhatcop.redhat.io/v1alpha1
+kind: GroupSync
+metadata:
+  name: groupsync-all-clusters
+  namespace: group-sync-operator
+spec:
+  providers:
+    - keycloak:
+				groups:
+          - all-clusters-auditors
+          - all-clusters-admins
+        credentialsSecret:
+          name: helms-deep-group-sync-credentials
+          namespace: group-sync-operator
+        loginRealm: helms-deep
+        realm: helms-deep
+        scope: sub
+        url: >-
+          https://keycloak-helms-deep-sso.apps.cluster-5e6d.5e6d.sandbox801.opentlc.com
+      name: keycloak
+  schedule: 0/15 * * * *
