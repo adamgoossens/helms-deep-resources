@@ -58,7 +58,7 @@ kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
   name: "elasticsearch-route"
-  namespace: "{{ _eck_namespace }}"
+  namespace: "helms-deep-eck"
 spec:
   to:
     kind: Service
@@ -72,7 +72,7 @@ kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
   name: "kibana-route"
-  namespace: "{{ _eck_namespace }}"
+  namespace: "helms-deep-eck"
 spec:
   to:
     kind: Service
