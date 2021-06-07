@@ -60,6 +60,7 @@ metadata:
   name: "elasticsearch-route"
   namespace: "helms-deep-eck"
 spec:
+  host: elasticsearch.apps.supervisor.adamgoossens.com
   to:
     kind: Service
     name: "elasticsearch-es-http"
@@ -74,6 +75,7 @@ metadata:
   name: "kibana-route"
   namespace: "helms-deep-eck"
 spec:
+  host: kibana.apps.supervisor.adamgoossens.com
   to:
     kind: Service
     name: "kibana-kb-http"
