@@ -39,7 +39,7 @@ placementRef:
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-  - name: policy-openshift-audit-logs
+  - name: policy-etcd-encryption
     kind: Policy
     apiGroup: policy.open-cluster-management.io
 ---
