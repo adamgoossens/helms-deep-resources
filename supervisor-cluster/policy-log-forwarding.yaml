@@ -8,7 +8,7 @@ metadata:
     policy.open-cluster-management.io/categories: AU Audit and Accountability
     policy.open-cluster-management.io/controls: AU-3 Content of Audit Records
 spec:
-  remediationAction: enforce
+  remediationAction: inform
   disabled: false
   policy-templates:
   - objectDefinition:
@@ -17,7 +17,7 @@ spec:
       metadata:
         name: policy-openshift-operators-redhat-namespace
       spec:
-        remediationAction: enforce # the policy-template spec.remediationAction is overridden by the preceding parameter value for spec.remediationAction.
+        remediationAction: inform # the policy-template spec.remediationAction is overridden by the preceding parameter value for spec.remediationAction.
         severity: High
         object-templates:
         - complianceType: musthave
@@ -32,7 +32,7 @@ spec:
       metadata:
         name: policy-elasticsearch-og
       spec:
-        remediationAction: enforce # the policy-template spec.remediationAction is overridden by the preceding parameter value for spec.remediationAction.
+        remediationAction: inform # the policy-template spec.remediationAction is overridden by the preceding parameter value for spec.remediationAction.
         severity: high
         object-templates:
         - complianceType: musthave
@@ -48,7 +48,7 @@ spec:
       metadata:
         name: policy-elasticsearch-sub
       spec:
-        remediationAction: enforce # the policy-template spec.remediationAction is overridden by the preceding parameter value for spec.remediationAction.
+        remediationAction: inform # the policy-template spec.remediationAction is overridden by the preceding parameter value for spec.remediationAction.
         severity: high
         object-templates:
         - complianceType: musthave
@@ -70,7 +70,7 @@ spec:
       metadata:
         name: policy-openshift-logging-namespace
       spec:
-        remediationAction: enforce # the policy-template spec.remediationAction is overridden by the preceding parameter value for spec.remediationAction.
+        remediationAction: inform # the policy-template spec.remediationAction is overridden by the preceding parameter value for spec.remediationAction.
         severity: High
         object-templates:
         - complianceType: musthave
@@ -85,7 +85,7 @@ spec:
       metadata:
         name: policy-cluster-logging-og
       spec:
-        remediationAction: enforce # the policy-template spec.remediationAction is overridden by the preceding parameter value for spec.remediationAction.
+        remediationAction: inform # the policy-template spec.remediationAction is overridden by the preceding parameter value for spec.remediationAction.
         severity: high
         object-templates:
         - complianceType: musthave
@@ -104,7 +104,7 @@ spec:
       metadata:
         name: policy-cluster-logging-sub
       spec:
-        remediationAction: enforce # the policy-template spec.remediationAction is overridden by the preceding parameter value for spec.remediationAction.
+        remediationAction: inform # the policy-template spec.remediationAction is overridden by the preceding parameter value for spec.remediationAction.
         severity: high
         object-templates:
         - complianceType: musthave
@@ -126,7 +126,7 @@ spec:
       metadata:
         name: policy-cluster-logging-cr
       spec:
-        remediationAction: enforce # the policy-template spec.remediationAction is overridden by the preceding parameter value for spec.remediationAction.
+        remediationAction: inform # the policy-template spec.remediationAction is overridden by the preceding parameter value for spec.remediationAction.
         severity: high
         object-templates:
         - complianceType: musthave
@@ -195,7 +195,7 @@ spec:
       metadata:
         name: policy-cluster-log-forwarders
       spec:
-        remediationAction: enforce # the policy-template spec.remediationAction is overridden by the preceding parameter value for spec.remediationAction.
+        remediationAction: inform # the policy-template spec.remediationAction is overridden by the preceding parameter value for spec.remediationAction.
         severity: high
         object-templates:
         - complianceType: musthave
