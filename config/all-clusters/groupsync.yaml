@@ -17,6 +17,6 @@ spec:
         realm: helms-deep
         scope: sub
         url: >-
-          https://keycloak-helms-deep-sso.apps.cluster-5e6d.5e6d.sandbox801.opentlc.com
+          https://sso.apps.supervisor.adamgoossens.com
       name: keycloak
   schedule: 0/15 * * * *
