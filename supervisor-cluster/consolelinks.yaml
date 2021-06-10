@@ -6,7 +6,7 @@ metadata:
 spec:
   applicationMenu:
     section: Red Hat Applications
-  href: https://acs.apps.supervisor.adamgoossens.com
+  href: https://central-stackrox.apps.supervisor.adamgoossens.com/
   location: ApplicationMenu
   text: Red Hat Advanced Cluster Security for Kubernetes
 ---
