@@ -7,6 +7,7 @@ spec:
   applicationMenu:
     section: Red Hat Applications
   href: https://acs.apps.supervisor.adamgoossens.com
+  location: ApplicationMenu
   text: Red Hat Advanced Cluster Security for Kubernetes
 ---
 apiVersion: console.openshift.io/v1
@@ -17,6 +18,7 @@ spec:
   applicationMenu:
     section: Red Hat Applications
   href: https://sso.apps.supervisor.adamgoossens.com
+  location: ApplicationMenu
   text: Red Hat Single Sign On
 ---
 apiVersion: console.openshift.io/v1
@@ -27,4 +29,5 @@ spec:
   applicationMenu:
     section: Red Hat Applications
   href: https://quay-prod.apps.supervisor.adamgoossens.com
+  location: ApplicationMenu
   text: Red Hat Quay
