@@ -1,0 +1,11 @@
+apiVersion: tower.ansible.com/v1alpha1
+kind: AnsibleJob
+metadata:
+  generateName: acs-collector-
+  name: acs-collector
+  namespace: helms-deep
+spec:
+  tower_auth_secret: toweraccess
+  job_template_name: "HELMS DEEP/ACM/Prehooks/ACS Collector"
+  extra_vars:
+    state: present

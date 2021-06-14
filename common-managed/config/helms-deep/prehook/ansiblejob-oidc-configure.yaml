@@ -1,0 +1,10 @@
+apiVersion: tower.ansible.com/v1alpha1
+kind: AnsibleJob
+metadata:
+  generateName: oidc-configure-
+  name: oidc-configure
+  namespace: helms-deep
+spec:
+  tower_auth_secret: toweraccess
+  job_template_name: "helmsdeep/acm/prehooks/cluster oidc configure"
+  extra_vars: {}
