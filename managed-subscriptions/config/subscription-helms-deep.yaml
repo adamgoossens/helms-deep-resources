@@ -13,4 +13,4 @@ spec:
   placement:
     placementRef:
       kind: PlacementRule
-      name: all-remote-clusters
+      name: non-local-clusters
