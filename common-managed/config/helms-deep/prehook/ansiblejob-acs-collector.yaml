@@ -6,6 +6,5 @@ metadata:
   namespace: helms-deep
 spec:
   tower_auth_secret: toweraccess
-  job_template_name: "HELMS DEEP/ACM/Prehooks/ACS Collector"
-  extra_vars:
-    state: present
+  job_template_name: "helmsdeep/acm/prehooks/acs collector"
+  extra_vars: {}
