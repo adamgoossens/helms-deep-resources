@@ -43,3 +43,18 @@ spec:
       - key: environment
         operator: In
         values: ['development']
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: non-development-clusters
+  namespace: helms-deep
+spec:
+  clusterConditions:
+    - status: 'True'
+      type: ManagedClusterJoined
+  clusterSelector:
+    matchExpressions:
+      - key: environment
+        operator: NotIn
+        values: ['development']
