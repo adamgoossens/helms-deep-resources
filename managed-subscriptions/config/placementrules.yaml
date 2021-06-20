@@ -22,7 +22,7 @@ metadata:
 spec:
   clusterConditions:
     - status: 'True'
-      type: ManagedClusterConditionAvailable
+      type: ManagedClusterJoined
   clusterSelector:
     matchExpressions:
       - key: environment
@@ -37,7 +37,7 @@ metadata:
 spec:
   clusterConditions:
     - status: 'True'
-      type: ManagedClusterConditionAvailable
+      type: ManagedClusterJoined
   clusterSelector:
     matchExpressions:
       - key: environment
