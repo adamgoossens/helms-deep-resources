@@ -8,4 +8,4 @@ spec:
   tower_auth_secret: toweraccess
   job_template_name: "helmsdeep/acm/posthooks/cluster configure"
   extra_vars:
-    state: posthook
+    hooktype: posthook
