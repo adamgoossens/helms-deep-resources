@@ -1,0 +1,11 @@
+apiVersion: tower.ansible.com/v1alpha1
+kind: AnsibleJob
+metadata:
+  generateName: acs-oidc-configure-
+  name: acs-oidc-configure
+  namespace: helms-deep
+spec:
+  tower_auth_secret: toweraccess
+  job_template_name: "helmsdeep/acm/posthooks/cluster configure"
+  extra_vars:
+    state: posthook
