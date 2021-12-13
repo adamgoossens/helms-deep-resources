@@ -1,9 +1,0 @@
----
-apiVersion: operators.coreos.com/v1
-kind: OperatorGroup
-metadata:
-  name: helms-deep-og
-  namespace: helms-deep
-spec:
-  targetNamespaces:
-    - helms-deep
