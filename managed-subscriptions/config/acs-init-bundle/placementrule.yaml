@@ -1,0 +1,14 @@
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: non-local-clusters
+  namespace: advanced-cluster-security
+spec:
+  clusterConditions:
+    - type: ManagedClusterJoined
+      status: "True"
+  clusterSelector:
+    matchExpressions:
+      - key: local-cluster
+        operator: DoesNotExist
