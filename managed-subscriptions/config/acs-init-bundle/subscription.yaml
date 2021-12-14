@@ -1,0 +1,15 @@
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: Subscription
+metadata:
+  name: init-bundle
+  namespace: managed-cluster-secrets
+spec:
+  channel: advanced-cluster-security/mcs-secrets
+  packageFilter:
+    annotations:
+      is-init-bundle-secret: 'true'
+  placement:
+    placementRef:
+      kind: PlacementRule
+      name: non-local-clusters

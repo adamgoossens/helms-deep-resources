@@ -1,0 +1,11 @@
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: Channel
+metadata:
+  name: mcs-secrets
+  namespace: advanced-cluster-security
+spec:
+  type: Namespace
+  pathname: advanced-cluster-security
+  sourceNamespaces:
+    - advanced-cluster-security
